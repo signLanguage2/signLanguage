@@ -5,8 +5,14 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/table.css" />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js">
+    </script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython_stdlib.js">
+    </script>
   </head>
-  <body>
+  <body onload="brython()">
     <header>
       <a href="index.html"><img class="logo" src="assets/logo site.png" /></a>
       <ul>
@@ -24,274 +30,15 @@
         </li>
       </ul>
     </header>
+    
+    <video autoplay id="video"></video>
     <main>
+    
+    <script>
       
-      <div class="tabel">
-        <table id="customers" class="content-table">
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="text"
-                  class="search"
-                  id="myInput"
-                  onkeyup="tableSearch()"
-                  placeholder="Search a programming language"
-                />
-              </th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th data-sort onclick="sortTable(0,this)">Name</th>
-              <th data-sort onclick="sortTable(1,this)">
-                Programming language
-              </th>
-              <th data-sort onclick="sortTable(2,this)">Price(USD/hour)</th>
-              <th data-sort onclick="sortTable(3,this)">Mail</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Alfreds Futterkiste</a></td>
-              <td>java</td>
-              <td>10</td>
-              <td>alfutter@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Berglunds snabbköp</a></td>
-              <td>c++</td>
-              <td>20</td>
-              <td>Bergop@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Emi</a></td>
-              <td>go</td>
-              <td>30</td>
-              <td>emanuelemi@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Ernesto</a></td>
-              <td>pearl</td>
-              <td>25</td>
-              <td>ernestoo123@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Murgocea Lavinia</a></td>
-              <td>go </td>
-              <td>15</td>
-              <td>murgonia@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Armin Cbum</a></td>
-              <td>flutter </td>
-              <td>23</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Cornelia Mestecanescu</a></td>
-              <td>pascal</td>
-              <td>10</td>
-              <td>Canada</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Virginia Evangelia</a></td>
-              <td>c</td>
-              <td>30</td>
-              <td>virginelia@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>arduino</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Paris spécialités</a></td>
-              <td>php</td>
-              <td>30</td>
-              <td>paries@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
 
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-            <tr>
-              <td><a class="teacher" href="teacher_page_empty.html" id="teacher_link">Marcel Oprea</a></td>
-              <td>MYSQL</td>
-              <td>30</td>
-              <td>marceloprea@gmail.com</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </script>
+    
     </main>
     <script>
       function sortTable(n, evt) {

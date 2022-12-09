@@ -31,6 +31,66 @@
       </li>
     </ul>
   </header>
+   <div>
+	    <img src='assets/letters/letter A.jpg' id='myImg'>
+	  </div>
+    <button onclick='changeImagenext()' id="imageButton">></button>
+    <button onclick='changeImageprev()' id="imageButton"><</button>
+    <script>
+      const img = document.getElementById('myImg');
+      let currentImgIdx = 1;
+      const images = [ 
+          'assets/letters/letter A.jpg',
+          'assets/letters/letter B.jpg',
+          'assets/letters/letter C.jpg',
+          'assets/letters/letter D.jpg',
+          'assets/letters/letter E.jpg',
+          'assets/letters/letter F.jpg',
+          'assets/letters/letter G.jpg',
+          'assets/letters/letter H.jpg',
+          'assets/letters/letter I.jpg',
+          'assets/letters/letter J.jpg',
+          'assets/letters/letter K.jpg',
+          'assets/letters/letter L.jpg',
+          'assets/letters/letter M.jpg',
+          'assets/letters/letter N.jpg',
+          'assets/letters/letter o.jpg',
+          'assets/letters/letter P.jpg',
+          'assets/letters/letter Q.jpg',
+
+          'assets/letters/letter R.jpg',
+          'assets/letters/letter S.jpg',
+          'assets/letters/letter T.jpg',
+          'assets/letters/letter U.jpg',
+          'assets/letters/letter V.jpg',
+          'assets/letters/letter W.jpg',
+          'assets/letters/letter X.jpg',
+          'assets/letters/letter Y.jpg',
+          'assets/letters/letter Z.jpg',
+      ]; 
+      
+      // Call changeImage() function on button click
+      function changeImagenext(){
+          if(currentImgIdx >= images.length){
+              currentImgIdx = 0;
+              // If current idx exceeds images array
+              // length, reset it to 0 again
+          }
+          img.src = images[currentImgIdx];
+          currentImgIdx++;
+          // Increment current image idx by 1
+      }
+      function changeImageprev(){
+          if(currentImgIdx >= images.length){
+              currentImgIdx = 0;
+              // If current idx exceeds images array
+              // length, reset it to 0 again
+          }
+          img.src = images[currentImgIdx];
+          currentImgIdx--;
+          // Increment current image idx by 1
+      }
+    </script>
   <div style="display: flex; justify-content: center;">
     <video id="videoInput"></video> 
     <canvas id="canvasOutput"></canvas>

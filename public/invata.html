@@ -1,163 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Lectii de viata la un click distanta!</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/table.css" />
-    <script type="text/javascript" src="https://docs.opencv.org/3.4/opencv.js"></script>
-  </head>
-  <body>
-    <header>
-      <a href="index.html"><img class="logo" src="assets/logo site.png" /></a>
-      <ul>
-        <li>
-          <a href="index.html" style="color: white;"  class="active">Home</a>
-        </li>
-        <li>
-          <a href="preda.html" style="color: white;" >Support</a>
-        </li>
-        <li>
-          <a href="invata.html" style="color: white;" >Learn</a>
-        </li>
-        <li>
-          <a href="contact.html" style="color: white;" >Contact</a>
-        </li>
-      </ul>
-    </header>
+<head>
+  <title>Lectii de viata la un click distanta!</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/table.css" />
+  <script type="text/javascript" src="https://docs.opencv.org/3.4/opencv.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html"><img class="logo" src="assets/logo site.png" /></a>
     
-    <video autoplay id="video"></video>
-    <main>
-    <video id="videoInput"></video> <canvas id="canvasOutput"></canvas>
-    <script>
-      // Adapted from https://docs.opencv.org/3.4/dd/d00/tutorial_js_video_display.html
-      
+    <ul>
+      <li>
+        <a href="index.html" style="color: white;" class="active">Home</a>
+      </li>
+      <li>
+        <a href="preda.html" style="color: white;">Support</a>
+      </li>
+      <li>
+        <a href="invata.html" style="color: white;">Learn</a>
+      </li>
+      <li>
+        <a href="contact.html" style="color: white;">Contact</a>
+      </li>
+    </ul>
+  </header>
+  <div style="display: flex; justify-content: center;">
+    <video id="videoInput"></video> 
+    <canvas id="canvasOutput"></canvas>
+  </div>
 
-      let video = document.getElementById("videoInput"); // video is the id of video tag
-      video.width = 640;
-      video.height = 480;
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: false })
-        .then(function(stream) {
-          video.srcObject = stream;
-          video.play();
+  <script>
 
-          let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-          let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-          let cap = new cv.VideoCapture(video);
-
-          const FPS = 30;
-          function processVideo() {
-            try {
-              // if (!streaming) {
-              //   // clean and stop.
-              //   src.delete();
-              //   dst.delete();
-              //   return;
-              // }
-              let begin = Date.now();
-              // start processing.
-              cap.read(src);
-              cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-              cv.imshow("canvasOutput", dst);
-              // schedule the next one.
-              let delay = 1000 / FPS - (Date.now() - begin);
-              setTimeout(processVideo, delay);
-            } catch (err) {
-              console.error(err);
-            }
-          }
-
-          // schedule the first one.
-          setTimeout(processVideo, 0);
-        })
-        .catch(function(err) {
-          console.log("An error occurred! " + err);
-        });
-
-    </script>
+    labels=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
-    </main>
-    <script>
-      function sortTable(n, evt) {
-        var table = document.querySelector("table"),
-          thead = document.querySelector("thead"),
-          tbody = table.querySelector("tbody"),
-          bRows = [...tbody.rows],
-          hData = [...thead.querySelectorAll("th")],
-          desc = false;
-        hData.map((head) => {
-          if (head != evt) {
-            head.classList.remove("asc", "desc");
-          }
-        });
-        desc = evt.classList.contains("asc") ? true : false;
-        evt.classList[desc ? "remove" : "add"]("asc");
-        evt.classList[desc ? "add" : "remove"]("desc");
-        tbody.innerHTML = "";
 
-        bRows.sort((a, b) => {
-          console.log(n);
-          let x = a.getElementsByTagName("td")[n].innerHTML.toLowerCase(),
-            y = b.getElementsByTagName("td")[n].innerHTML.toLowerCase();
-          console.log(x, y);
-          return desc ? (x < y ? 1 : -1) : x < y ? -1 : 1;
-        });
-        bRows.map((bRow) => {
-          tbody.appendChild(bRow);
-        });
-      }
-      function sortTableInt(n, evt) {
-        var table = document.querySelector("table"),
-          thead = document.querySelector("thead"),
-          tbody = table.querySelector("tbody"),
-          bRows = [...tbody.rows],
-          hData = [...thead.querySelectorAll("th")],
-          desc = false;
-        hData.map((head) => {
-          if (head != evt) {
-            head.classList.remove("asc", "desc");
-          }
-        });
-        desc = evt.classList.contains("asc") ? true : false;
-        evt.classList[desc ? "remove" : "add"]("asc");
-        evt.classList[desc ? "add" : "remove"]("desc");
-        tbody.innerHTML = "";
+    let video = document.getElementById("videoInput"); // video is the id of video tag
+    video.width = 640;
+    video.height = 480;
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: false })
+      .then(function (stream) {
+        video.srcObject = stream;
+        video.play();
 
-        bRows.sort((a, b) => {
-          console.log(n);
-          let x = a.getElementsByTagName("td")[n].innerHTML,
-            y = b.getElementsByTagName("td")[n].innerHTML;
-          console.log(x, y);
-          return desc ? (x < y ? 1 : -1) : x < y ? -1 : 1;
-        });
-        bRows.map((bRow) => {
-          tbody.appendChild(bRow);
-        });
-      }
-    </script>
-    <script type="application/javascript">
-      function tableSearch() {
-        let input, filter, table, tr, td, txtValue;
+        let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+        let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+        let cap = new cv.VideoCapture(video);
 
-        //Intialising Variables
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("customers");
-        tr = table.getElementsByTagName("tr");
+        function predict(img)
+        {
+          
+        }
 
-        for (let i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[1];
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
+        const FPS = 30;
+        function processVideo() {
+          try {
+            // if (!streaming) {
+            //   // clean and stop.
+            //   src.delete();
+            //   dst.delete();
+            //   return;
+            // }
+            let begin = Date.now();
+            // start processing.
+            cap.read(src);
+            cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+            
+            let res = predict(dst);
+            // schedule the next one.
+            let delay = 1000 / FPS - (Date.now() - begin);
+            setTimeout(processVideo, delay);
+          } catch (err) {
+            console.error(err);
           }
         }
-      }
-    </script>
-  </body>
+
+        // schedule the first one.
+        setTimeout(processVideo, 0);
+      })
+      .catch(function (err) {
+        console.log("An error occurred! " + err);
+      });
+
+  </script>
+
+</body>
+
 </html>

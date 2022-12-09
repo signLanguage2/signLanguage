@@ -7,12 +7,13 @@
   scroll-behavior: smooth;
 }
 a {
+  color: white;
   text-decoration: none;
 }
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: linear-gradient(white, rgb(30, 79, 47));
+  background: #565b65;
   min-height: 100vh;
   font-family: "Montserrat-Regular";
   color: #fff;
@@ -181,7 +182,7 @@ section img#books {
 
 #text {
   position: absolute;
-  color: rgb(16, 45, 26);
+  color: white;
   left: 5%;
 text-align: center;
   margin-bottom: 1.7em;

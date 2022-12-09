@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 body {
     min-height: 100vh;
-    background-image: linear-gradient(white, gray);
+    background: #565b65;
     margin:none;
 }
 

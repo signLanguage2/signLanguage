@@ -24,7 +24,7 @@ body {
   margin-top: 8%; 
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: linear-gradient(white, rgb(30, 79, 47));
+  background: #565b65;
   min-height: 100vh;
   font-family: "Montserrat-Regular";
 

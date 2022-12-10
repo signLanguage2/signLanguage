@@ -25,7 +25,7 @@
       src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.5.2"></script>
   </head>
 
   <body>
@@ -110,6 +110,51 @@
     </div>
 
     <script type="module">
+      
+      import * as tsff from 'https://cdn.skypack.dev/@tensorflow/tfjs'
+      
+      import { KNeighborsClassifier, fromJSON, setBackend, DecisionTreeClassifier } from 'https://unpkg.com/scikitjs/dist/web/index.min.js'
+      var model = null
+      async function getTrainedModel(allText)
+      {
+        setBackend(tsff)
+        
+        const X = await fromJSON(allText)
+        let y =[]
+        for(let i = 0;i<10;i++)
+          for(let j=0;j<26;j++)
+            y.push(j)
+        
+        console.log(X)
+
+        const clf = new DecisionTreeClassifier({ criterion: 'gini', maxDepth: 12 })
+        await clf.fit(X, y)
+        return clf
+      }
+      
+      function readTextFile(file)
+      {
+          var rawFile = new XMLHttpRequest();
+          rawFile.open("GET", file, false);
+          rawFile.onreadystatechange = function ()
+          {
+              if(rawFile.readyState === 4)
+              {
+                  if(rawFile.status === 200 || rawFile.status == 0)
+                  {
+                    var allText = rawFile.responseText;
+                    console.log()
+                    getTrainedModel(allText).then(res=>{
+                      model = res
+                    })
+                  }
+              }
+          }
+          rawFile.send(null);
+      }
+      readTextFile("./data.json");
+
+
       const videoElement = document.getElementById("videoInput");
       const canvasElement = document.getElementById("canvasOutput");
       const canvasCtx = canvasElement.getContext("2d");
@@ -131,6 +176,23 @@
         );
         if (results.multiHandLandmarks) {
           for (const landmarks of results.multiHandLandmarks) {
+            // get landmarks and predict
+            const newHand = results.multiHandLandmarks[0];
+            let currHand = newHand?.map((el) => [el.x, el.y, el.z]);
+            let nhand = []
+            if(currHand)
+            for(let i=0;i<currHand.length;i++)
+            {
+              nhand.push(currHand[i][0])
+              nhand.push(currHand[i][1])
+              nhand.push(currHand[i][2]) 
+            }
+            
+            if(model!=null)
+            {
+              console.log(String.fromCharCode(97 + model.predict([nhand])[0]))
+            }
+
             drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
               color: "#00FF00",
               lineWidth: 5,
@@ -304,7 +366,7 @@
           'assets/letters/letter P.jpg',
           'assets/letters/letter W.jpg',
       ];
-      const letters = [
+      const LETTERS = [
         "A",
         "B",
         "C",
@@ -348,7 +410,7 @@
           // length, reset it to 0 again
         }
         img.src = images[currentImgIdx];
-        text.innerHTML = letters[currentImgIdx];
+        text.innerHTML = LETTERS[currentImgIdx];
 
         // Increment current image idx by 1
       }
@@ -360,7 +422,7 @@
         }
         currentImgIdx--;
         img.src = images[currentImgIdx];
-        text.innerHTML = letters[currentImgIdx];
+        text.innerHTML = LETTERS[currentImgIdx];
 
         // Increment current image idx by 1
       }

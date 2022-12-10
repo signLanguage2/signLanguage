@@ -218,6 +218,7 @@
 
       function onTimesUp() {
         timePassed -= 6;
+        changeImagenext();
         timeLeft += 5;
         timerInterval = null;
         remainingPathColor = COLOR_CODES.info.color;
@@ -293,38 +294,15 @@
       }
     </script>
     <script>
-      setInterval(changeImagenext, 5750);
       const img = document.getElementById("myImgg");
       const text = document.getElementById("text");
       let currentImgIdx = 0;
       const images = [ 
           'assets/letters/letter A.jpg',
-          'assets/letters/letter B.jpg',
           'assets/letters/letter C.jpg',
-          'assets/letters/letter D.jpg',
-          'assets/letters/letter E.jpg',
-          'assets/letters/letter F.jpg',
-          'assets/letters/letter G.jpg',
-          'assets/letters/letter H.jpg',
-          'assets/letters/letter I.jpg',
-          'assets/letters/letter J.jpg',
-          'assets/letters/letter k.jpg',
-          'assets/letters/letter L.jpg',
-          'assets/letters/letter M.jpg',
-          'assets/letters/letter N.jpg',
           'assets/letters/letter o.jpg',
           'assets/letters/letter P.jpg',
-          'assets/letters/letter Q.jpg',
-
-        "assets/letters/letter R.jpg",
-        "assets/letters/letter S.jpg",
-        "assets/letters/letter T.jpg",
-        "assets/letters/letter U.jpg",
-        "assets/letters/letter V.jpg",
-        "assets/letters/letter W.jpg",
-        "assets/letters/letter X.jpg",
-        "assets/letters/letter Y.jpg",
-        "assets/letters/letter Z.jpg",
+          'assets/letters/letter W.jpg',
       ];
       const letters = [
         "A",
@@ -363,9 +341,9 @@
           // If current idx exceeds images array
           // length, reset it to 0 again
         }
-        currentImgIdx += Math.floor(Math.random() * 10) + 1;
+        currentImgIdx += 1;
         if (currentImgIdx >= images.length - 1) {
-          currentImgIdx -= 26;
+          currentImgIdx =0;
           // If current idx exceeds images array
           // length, reset it to 0 again
         }

@@ -14,31 +14,65 @@
 <body>
 
   <header>
-    <a href="index.html"><img class="logo" src="assets/logo site.png" /></a>
+    <a href="index.html"><img class="logo" src="assets/logo site.png" style="width:100px;height:100px;" /></a>
     
     <ul>
       <li>
-        <a href="index.html" style="color: white;" class="active">Home</a>
+        <a href="index.html" style="color: white;"  >Home</a>
       </li>
       <li>
         <a href="preda.html" style="color: white;">Support</a>
       </li>
       <li>
-        <a href="invata.html" style="color: white;">Learn</a>
+        <a href="invata.html" style="color: white;background-color: black;" class="active">Learn</a>
       </li>
       <li>
-        <a href="contact.html" style="color: white;">Contact</a>
+        <a href="contact.html" style="color: white;">Practice</a>
       </li>
     </ul>
   </header>
    <div>
-	    <img src='assets/letters/letter A.jpg' id='myImg'>
+      <table id="tabelimagini">
+      
+        <tr>
+          <td>
+            <div style="display: flex; justify-content: center; margin-left: 100px;">
+              <video id="videoInput" ></video> 
+              <canvas id="canvasOutput"></canvas>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; justify-content: center;">
+            <button onclick='changeImageprev()' ><</button>
+          </div>
+          </td>
+          <td>
+          <div class="container">
+        <img src='assets/letters/letter A.jpg' class='myImg' id="myImgg">
+        <div class="overlay">
+          <div class><h2 id="text" style="font-size: 300px; text-align: center; margin-left: 40px;">A</h2></div>
+        </div>
+      </td>
+      <td>
+        <div style="display: flex; justify-content: left;">
+        <button onclick='changeImagenext()' >></button>
+      </div>
+      </td>
+      
+      
+      
+        </tr>
+        
+  
+      </div>
+    </table>
+    
 	  </div>
-    <button onclick='changeImagenext()' id="imageButton">></button>
-    <button onclick='changeImageprev()' id="imageButton"><</button>
+    
     <script>
-      const img = document.getElementById('myImg');
-      let currentImgIdx = 1;
+      const img = document.getElementById('myImgg');
+      const text=document.getElementById('text');
+      let currentImgIdx = 0;
       const images = [ 
           'assets/letters/letter A.jpg',
           'assets/letters/letter B.jpg',
@@ -68,33 +102,63 @@
           'assets/letters/letter Y.jpg',
           'assets/letters/letter Z.jpg',
       ]; 
+      const letters = [ 
+          'A',
+          'B',
+          'C',
+          'D',
+          'E',
+          'F',
+          'G',
+          'H',
+          'I',
+          'J',
+          'K',
+          'L',
+          'M',
+          'N',
+          'O',
+          'P',
+          'Q',
+
+          'R',
+          'S',
+          'T',
+          'U',
+          'V',
+          'W',
+          'X',
+          'Y',
+          'Z',
+      ]; 
       
       // Call changeImage() function on button click
       function changeImagenext(){
-          if(currentImgIdx >= images.length){
-              currentImgIdx = 0;
+          if(currentImgIdx >= images.length-1){
+              currentImgIdx = -1;
               // If current idx exceeds images array
               // length, reset it to 0 again
           }
-          img.src = images[currentImgIdx];
           currentImgIdx++;
+          img.src = images[currentImgIdx];
+          text.innerHTML=letters[currentImgIdx];
+          
           // Increment current image idx by 1
       }
       function changeImageprev(){
-          if(currentImgIdx >= images.length){
-              currentImgIdx = 0;
+          if(currentImgIdx <= 0){
+              currentImgIdx = images.length;
               // If current idx exceeds images array
               // length, reset it to 0 again
           }
-          img.src = images[currentImgIdx];
           currentImgIdx--;
+          img.src = images[currentImgIdx];
+          text.innerHTML=letters[currentImgIdx];
+          
           // Increment current image idx by 1
       }
     </script>
-  <div style="display: flex; justify-content: center;">
-    <video id="videoInput"></video> 
-    <canvas id="canvasOutput"></canvas>
-  </div>
+  
 
   <script>
 

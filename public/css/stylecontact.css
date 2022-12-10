@@ -126,7 +126,7 @@ h1::before{
   
   header ul li a:hover,
   header ul li a:active {
-    background: rgb(30, 79, 47);
+    background: rgb(0, 0, 0);
     color:#fff;
   }
 .inner {

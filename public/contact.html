@@ -60,7 +60,7 @@
     <div>
       <table id="tabelimagini">
         <tr>
-          <td colspan="2">
+          <td >
             <div
               style="
                 display: flex;
@@ -74,8 +74,8 @@
               
             </div>
           </td>
-
-          <td>
+          <td></td>
+          <td style="text-align: center;" set>
             <div id="containerblack" style="opacity: 1">
               <img
                 src="assets/letters/letter A.jpg"
@@ -220,6 +220,7 @@
         timeLeft += 5;
         timerInterval = null;
         remainingPathColor = COLOR_CODES.info.color;
+        
       }
 
       function startTimer() {
@@ -250,7 +251,16 @@
 
       function setRemainingPathColor(timeLeft) {
         const { alert, warning, info } = COLOR_CODES;
-        if (timeLeft <= alert.threshold) {
+        if (timeLeft <= 0.1)
+        {
+          document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove(alert.color);
+          document
+            .getElementById("base-timer-path-remaining")
+            .classList.add(info.color);
+        }
+        else if (timeLeft <= alert.threshold) {
           document
             .getElementById("base-timer-path-remaining")
             .classList.remove(warning.color);
@@ -265,6 +275,7 @@
             .getElementById("base-timer-path-remaining")
             .classList.add(warning.color);
         }
+        console.log(timeLeft)
       }
 
       function calculateTimeFraction() {

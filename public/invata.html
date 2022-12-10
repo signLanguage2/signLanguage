@@ -1,220 +1,258 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Lectii de viata la un click distanta!</title>
 
-<head>
-  <title>Lectii de viata la un click distanta!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
+    <script
+      type="text/javascript"
+      src="https://docs.opencv.org/3.4/opencv.js"
+    ></script>
 
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/table.css" />
-  <script type="text/javascript" src="https://docs.opencv.org/3.4/opencv.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
+  </head>
 
-</head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img
+          class="logo"
+          src="assets/logo site.png"
+          style="width: 100px; height: 100px"
+      /></a>
 
-<body>
-
-  <header>
-    <a href="index.html"><img class="logo" src="assets/logo site.png" style="width:100px;height:100px;" /></a>
-    
-    <ul>
-      <li>
-        <a href="index.html" style="color: white;"  >Home</a>
-      </li>
-      <li>
-        <a href="preda.html" style="color: white;">Support</a>
-      </li>
-      <li>
-        <a href="invata.html" style="color: white;background-color: black;" class="active">Learn</a>
-      </li>
-      <li>
-        <a href="contact.html" style="color: white;">Practice</a>
-      </li>
-    </ul>
-  </header>
-   <div>
+      <ul>
+        <li>
+          <a href="index.html" style="color: white">Home</a>
+        </li>
+        <li>
+          <a href="preda.html" style="color: white">Support</a>
+        </li>
+        <li>
+          <a
+            href="invata.html"
+            style="color: white; background-color: black"
+            class="active"
+            >Learn</a
+          >
+        </li>
+        <li>
+          <a href="contact.html" style="color: white">Practice</a>
+        </li>
+      </ul>
+    </header>
+    <div>
       <table id="tabelimagini">
-      
         <tr>
           <td>
-            <div style="display: flex; justify-content: center; margin-left: 100px;">
-              <video id="videoInput" ></video> 
+            <div
+              style="display: flex; justify-content: center; margin-left: 100px"
+            >
+              <video id="videoInput"></video>
               <canvas id="canvasOutput"></canvas>
             </div>
           </td>
           <td>
-            <div style="display: flex; justify-content: center;">
-            <button onclick='changeImageprev()' ><</button>
-          </div>
+            <div style="display: flex; justify-content: center">
+              <button onclick="changeImageprev()"></button>
+            </div>
           </td>
           <td>
-          <div class="container">
-        <img src='assets/letters/letter A.jpg' class='myImg' id="myImgg">
-        <div class="overlay">
-          <div class><h2 id="text" style="font-size: 300px; text-align: center; margin-left: 40px;">A</h2></div>
-        </div>
-      </td>
-      <td>
-        <div style="display: flex; justify-content: left;">
-        <button onclick='changeImagenext()' >></button>
-      </div>
-      </td>
-      
-      
-      
+            <div class="container">
+              <img
+                src="assets/letters/letter A.jpg"
+                class="myImg"
+                id="myImgg"
+              />
+              <div class="overlay">
+                <div class>
+                  <h2
+                    id="text"
+                    style="
+                      font-size: 300px;
+                      text-align: center;
+                      margin-left: 40px;
+                    "
+                  >
+                    A
+                  </h2>
+                </div>
+              </div>
+              <td>
+                <div style="display: flex; justify-content: left">
+                  <button onclick="changeImagenext()"></button>
+                </div>
+              </td>
+            </div>
+          </td>
         </tr>
-        
-  
-      </div>
-    </table>
-    
-	  </div>
-    
+      </table>
+    </div>
+
     <script>
-      const img = document.getElementById('myImgg');
-      const text=document.getElementById('text');
+      const img = document.getElementById("myImgg");
+      const text = document.getElementById("text");
       let currentImgIdx = 0;
-      const images = [ 
-          'assets/letters/letter A.jpg',
-          'assets/letters/letter B.jpg',
-          'assets/letters/letter C.jpg',
-          'assets/letters/letter D.jpg',
-          'assets/letters/letter E.jpg',
-          'assets/letters/letter F.jpg',
-          'assets/letters/letter G.jpg',
-          'assets/letters/letter H.jpg',
-          'assets/letters/letter I.jpg',
-          'assets/letters/letter J.jpg',
-          'assets/letters/letter K.jpg',
-          'assets/letters/letter L.jpg',
-          'assets/letters/letter M.jpg',
-          'assets/letters/letter N.jpg',
-          'assets/letters/letter o.jpg',
-          'assets/letters/letter P.jpg',
-          'assets/letters/letter Q.jpg',
+      const images = [
+        "assets/letters/letter A.jpg",
+        "assets/letters/letter B.jpg",
+        "assets/letters/letter C.jpg",
+        "assets/letters/letter D.jpg",
+        "assets/letters/letter E.jpg",
+        "assets/letters/letter F.jpg",
+        "assets/letters/letter G.jpg",
+        "assets/letters/letter H.jpg",
+        "assets/letters/letter I.jpg",
+        "assets/letters/letter J.jpg",
+        "assets/letters/letter K.jpg",
+        "assets/letters/letter L.jpg",
+        "assets/letters/letter M.jpg",
+        "assets/letters/letter N.jpg",
+        "assets/letters/letter o.jpg",
+        "assets/letters/letter P.jpg",
+        "assets/letters/letter Q.jpg",
+        "assets/letters/letter R.jpg",
+        "assets/letters/letter S.jpg",
+        "assets/letters/letter T.jpg",
+        "assets/letters/letter U.jpg",
+        "assets/letters/letter V.jpg",
+        "assets/letters/letter W.jpg",
+        "assets/letters/letter X.jpg",
+        "assets/letters/letter Y.jpg",
+        "assets/letters/letter Z.jpg",
+      ];
+      const letters = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
 
-          'assets/letters/letter R.jpg',
-          'assets/letters/letter S.jpg',
-          'assets/letters/letter T.jpg',
-          'assets/letters/letter U.jpg',
-          'assets/letters/letter V.jpg',
-          'assets/letters/letter W.jpg',
-          'assets/letters/letter X.jpg',
-          'assets/letters/letter Y.jpg',
-          'assets/letters/letter Z.jpg',
-      ]; 
-      const letters = [ 
-          'A',
-          'B',
-          'C',
-          'D',
-          'E',
-          'F',
-          'G',
-          'H',
-          'I',
-          'J',
-          'K',
-          'L',
-          'M',
-          'N',
-          'O',
-          'P',
-          'Q',
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ];
 
-          'R',
-          'S',
-          'T',
-          'U',
-          'V',
-          'W',
-          'X',
-          'Y',
-          'Z',
-      ]; 
-      
       // Call changeImage() function on button click
-      function changeImagenext(){
-          if(currentImgIdx >= images.length-1){
-              currentImgIdx = -1;
-              // If current idx exceeds images array
-              // length, reset it to 0 again
-          }
-          currentImgIdx++;
-          img.src = images[currentImgIdx];
-          text.innerHTML=letters[currentImgIdx];
-          
-          // Increment current image idx by 1
+      function changeImagenext() {
+        if (currentImgIdx >= images.length - 1) {
+          currentImgIdx = -1;
+          // If current idx exceeds images array
+          // length, reset it to 0 again
+        }
+        currentImgIdx++;
+        img.src = images[currentImgIdx];
+        text.innerHTML = letters[currentImgIdx];
+
+        // Increment current image idx by 1
       }
-      function changeImageprev(){
-          if(currentImgIdx <= 0){
-              currentImgIdx = images.length;
-              // If current idx exceeds images array
-              // length, reset it to 0 again
-          }
-          currentImgIdx--;
-          img.src = images[currentImgIdx];
-          text.innerHTML=letters[currentImgIdx];
-          
-          // Increment current image idx by 1
+      function changeImageprev() {
+        if (currentImgIdx <= 0) {
+          currentImgIdx = images.length;
+          // If current idx exceeds images array
+          // length, reset it to 0 again
+        }
+        currentImgIdx--;
+        img.src = images[currentImgIdx];
+        text.innerHTML = letters[currentImgIdx];
+
+        // Increment current image idx by 1
       }
     </script>
-  
 
-  <script>
+    <script>
+      labels = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ];
 
-    labels=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    
+      let video = document.getElementById("videoInput"); // video is the id of video tag
+      video.width = 640;
+      video.height = 480;
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: false })
+        .then(function (stream) {
+          video.srcObject = stream;
+          video.play();
 
-    let video = document.getElementById("videoInput"); // video is the id of video tag
-    video.width = 640;
-    video.height = 480;
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
-      .then(function (stream) {
-        video.srcObject = stream;
-        video.play();
+          let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+          let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+          let cap = new cv.VideoCapture(video);
 
-        let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-        let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-        let cap = new cv.VideoCapture(video);
+          function predict(img) {}
 
-        function predict(img)
-        {
-          
-        }
+          const FPS = 30;
+          function processVideo() {
+            try {
+              // if (!streaming) {
+              //   // clean and stop.
+              //   src.delete();
+              //   dst.delete();
+              //   return;
+              // }
+              let begin = Date.now();
+              // start processing.
+              cap.read(src);
+              cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
 
-        const FPS = 30;
-        function processVideo() {
-          try {
-            // if (!streaming) {
-            //   // clean and stop.
-            //   src.delete();
-            //   dst.delete();
-            //   return;
-            // }
-            let begin = Date.now();
-            // start processing.
-            cap.read(src);
-            cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
-            
-            let res = predict(dst);
-            // schedule the next one.
-            let delay = 1000 / FPS - (Date.now() - begin);
-            setTimeout(processVideo, delay);
-          } catch (err) {
-            console.error(err);
+              let res = predict(dst);
+              // schedule the next one.
+              let delay = 1000 / FPS - (Date.now() - begin);
+              setTimeout(processVideo, delay);
+            } catch (err) {
+              console.error(err);
+            }
           }
-        }
 
-        // schedule the first one.
-        setTimeout(processVideo, 0);
-      })
-      .catch(function (err) {
-        console.log("An error occurred! " + err);
-      });
-
-  </script>
-
-</body>
-
+          // schedule the first one.
+          setTimeout(processVideo, 0);
+        })
+        .catch(function (err) {
+          console.log("An error occurred! " + err);
+        });
+    </script>
+  </body>
 </html>

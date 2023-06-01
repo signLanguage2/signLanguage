@@ -1,197 +1,163 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Lectii de viata la un click distanta!</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/table.css" />
-    <script
-      type="text/javascript"
-      src="https://docs.opencv.org/3.4/opencv.js"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
-  </head>
+<head>
+  <title>Lectii de viata la un click distanta!</title>
 
-  <body>
-    <header>
-      <a href="index.html"
-        ><img
-          class="logo"
-          src="assets/logo site.png"
-          style="width: 100px; height: 100px"
-      /></a>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/table.css" />
+  <script type="text/javascript" src="https://docs.opencv.org/3.4/opencv.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js%22%3E"></script>
+</head>
 
-      <ul>
-        <li>
-          <a href="index.html" style="color: white">Home</a>
-        </li>
-        <li>
-          <a href="preda.html" style="color: white">Support</a>
-        </li>
-        <li>
-          <a href="invata.html" style="color: white">Learn</a>
-        </li>
-        <li>
-          <a
-            href="contact.html"
-            style="color: white; background-color: black"
-            class="active"
-            >Practice</a
-          >
-        </li>
-      </ul>
-    </header>
-    <div>
-      <table id="tabelimagini">
-        <tr>
-          <td >
-            <div
-              style="
+<body>
+  <header>
+    <a href="index.html"><img class="logo" src="assets/logo site.png" style="width: 100px; height: 100px" /></a>
+
+    <ul>
+      <li>
+        <a href="index.html" style="color: white">Home</a>
+      </li>
+      <li>
+        <a href="preda.html" style="color: white">Support</a>
+      </li>
+      <li>
+        <a href="contact.html" style="color: white; background-color: black" class="active">Practice</a>
+      </li>
+    </ul>
+  </header>
+  <div>
+    <table id="tabelimagini">
+      <tr>
+        <td>
+          <div style="
                 display: flex;
                 justify-content: center;
                 margin-left: 100px;
                 align-items: center;
                 flex-direction: column;
-              "
-            >
-              <canvas id="canvasOutput" width="640" height="360"><video id="videoInput"></video></canvas>
-              
-            </div>
-          </td>
+              ">
+            <canvas id="canvasOutput" width="640" height="360"><video id="videoInput"></video></canvas>
 
-          <td><div id="app" style="margin: 100px;"></div></td>
-          <td>
-            <div id="containerblack" style="opacity: 1">
-              <img
-                src="assets/letters/letter A.jpg"
-                class="myImg"
-                id="myImgg"
-                style="background-color: black; opacity: 1"
-              />
-              <div class="overlay">
-                <div class>
-                  <h2
-                    id="text"
-                    style="
+          </div>
+        </td>
+
+        <td>
+          <div id="app" style="margin: 100px;"></div>
+        </td>
+        <td>
+          <div id="containerblack" style="opacity: 1">
+            <img src="assets/letters/letter A.jpg" class="myImg" id="myImgg"
+              style="background-color: black; opacity: 1" />
+            <div class="overlay">
+              <div class>
+                <h2 id="text" style="
                       font-size: 300px;
                       text-align: center;
                       margin-left: 40px;
-                    "
-                  >
-                    A
-                  </h2>
-                </div>
+                    ">
+                  A
+                </h2>
               </div>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
             </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  </div>
+  </td>
+  </tr>
+  </table>
+  </div>
 
-    <script type="module">
-      const videoElement = document.getElementById("videoInput");
-      const canvasElement = document.getElementById("canvasOutput");
-      const canvasCtx = canvasElement.getContext("2d");
+  <script type="module">
+    const videoElement = document.getElementById("videoInput");
+    const canvasElement = document.getElementById("canvasOutput");
+    const canvasCtx = canvasElement.getContext("2d");
 
-      // setTimeout(() => {
-      //   canvasElement.width = videoElement.videoWidth;
-      //   canvasElement.height = videoElement.heightWidth;
-      // }, 3000);
+    // setTimeout(() => {
+    //   canvasElement.width = videoElement.videoWidth;
+    //   canvasElement.height = videoElement.heightWidth;
+    // }, 3000);
 
-      function onResults(results) {
-        canvasCtx.save();
-        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-        canvasCtx.drawImage(
-          results.image,
-          0,
-          0,
-          canvasElement.width,
-          canvasElement.height
-        );
-        if (results.multiHandLandmarks) {
-          for (const landmarks of results.multiHandLandmarks) {
-            drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
-              color: "#00FF00",
-              lineWidth: 5,
-            });
-            drawLandmarks(canvasCtx, landmarks, {
-              color: "#FF0000",
-              lineWidth: 2,
-            });
-          }
+    function onResults(results) {
+      canvasCtx.save();
+      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      canvasCtx.drawImage(
+        results.image,
+        0,
+        0,
+        canvasElement.width,
+        canvasElement.height
+      );
+      if (results.multiHandLandmarks) {
+        for (const landmarks of results.multiHandLandmarks) {
+          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
+            color: "#00FF00",
+            lineWidth: 5,
+          });
+          drawLandmarks(canvasCtx, landmarks, {
+            color: "#FF0000",
+            lineWidth: 2,
+          });
         }
-        canvasCtx.restore();
       }
+      canvasCtx.restore();
+    }
 
-      const hands = new Hands({
-        locateFile: (file) => {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-        },
-      });
-      hands.setOptions({
-        maxNumHands: 2,
-        modelComplexity: 1,
-        minDetectionConfidence: 0.5,
-        minTrackingConfidence: 0.5,
-      });
-      hands.onResults(onResults);
+    const hands = new Hands({
+      locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+      },
+    });
+    hands.setOptions({
+      maxNumHands: 2,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+    });
+    hands.onResults(onResults);
 
-      const camera = new Camera(videoElement, {
-        onFrame: async () => {
-          await hands.send({ image: videoElement });
-        },
-        width: 1280,
-        height: 720,
-      });
-      camera.start();
-    </script>
-    <script>
-      const FULL_DASH_ARRAY = 283;
-      const WARNING_THRESHOLD = 3;
-      const ALERT_THRESHOLD = 1;
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        await hands.send({ image: videoElement });
+      },
+      width: 1280,
+      height: 720,
+    });
+    camera.start();
+  </script>
+  <script>
+    const FULL_DASH_ARRAY = 283;
+    const WARNING_THRESHOLD = 3;
+    const ALERT_THRESHOLD = 1;
 
-      const COLOR_CODES = {
-        info: {
-          color: "green",
-        },
-        warning: {
-          color: "orange",
-          threshold: WARNING_THRESHOLD,
-        },
-        alert: {
-          color: "red",
-          threshold: ALERT_THRESHOLD,
-        },
-      };
+    const COLOR_CODES = {
+      info: {
+        color: "green",
+      },
+      warning: {
+        color: "orange",
+        threshold: WARNING_THRESHOLD,
+      },
+      alert: {
+        color: "red",
+        threshold: ALERT_THRESHOLD,
+      },
+    };
 
-      const TIME_LIMIT = 5;
-      let timePassed = 0;
-      let timeLeft = TIME_LIMIT;
-      let timerInterval = null;
-      let remainingPathColor = COLOR_CODES.info.color;
+    const TIME_LIMIT = 5;
+    let timePassed = 0;
+    let timeLeft = TIME_LIMIT;
+    let timerInterval = null;
+    let remainingPathColor = COLOR_CODES.info.color;
 
-      document.getElementById("app").innerHTML = `
+    document.getElementById("app").innerHTML = `
 <div class="base-timer">
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <g class="base-timer__circle">
@@ -210,161 +176,161 @@
     </g>
   </svg>
   <span id="base-timer-label" class="base-timer__label">${formatTime(
-    timeLeft
-  )}</span>
+      timeLeft
+    )}</span>
 </div>
 `;
-      startTimer();
+    startTimer();
 
-      function onTimesUp() {
-        timePassed -= 6;
-        changeImagenext();
-        timeLeft += 5;
-        timerInterval = null;
-        remainingPathColor = COLOR_CODES.info.color;
-        
-      }
+    function onTimesUp() {
+      timePassed -= 6;
+      changeImagenext();
+      timeLeft += 5;
+      timerInterval = null;
+      remainingPathColor = COLOR_CODES.info.color;
 
-      function startTimer() {
-        timerInterval = setInterval(() => {
-          timePassed = timePassed += 1;
-          timeLeft = TIME_LIMIT - timePassed;
-          document.getElementById("base-timer-label").innerHTML =
-            formatTime(timeLeft);
-          setCircleDasharray();
-          setRemainingPathColor(timeLeft);
+    }
 
-          if (timeLeft === 0) {
-            onTimesUp();
-          }
-        }, 1000);
-      }
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timePassed = timePassed += 1;
+        timeLeft = TIME_LIMIT - timePassed;
+        document.getElementById("base-timer-label").innerHTML =
+          formatTime(timeLeft);
+        setCircleDasharray();
+        setRemainingPathColor(timeLeft);
 
-      function formatTime(time) {
-        const minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-
-        if (seconds < 10) {
-          seconds = `0${seconds}`;
+        if (timeLeft === 0) {
+          onTimesUp();
         }
+      }, 1000);
+    }
 
-        return `${minutes}:${seconds}`;
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+
+      if (seconds < 10) {
+        seconds = `0${seconds}`;
       }
 
-      function setRemainingPathColor(timeLeft) {
-        const { alert, warning, info } = COLOR_CODES;
-        if (timeLeft <= 0.1)
-        {
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.remove(alert.color);
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.add(info.color);
-        }
-        else if (timeLeft <= alert.threshold) {
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.remove(warning.color);
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.add(alert.color);
-        } else if (timeLeft <= warning.threshold) {
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.remove(info.color);
-          document
-            .getElementById("base-timer-path-remaining")
-            .classList.add(warning.color);
-        }
-      }
+      return `${minutes}:${seconds}`;
+    }
 
-      function calculateTimeFraction() {
-        const rawTimeFraction = timeLeft / TIME_LIMIT;
-        return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-      }
-
-      function setCircleDasharray() {
-        const circleDasharray = `${(
-          calculateTimeFraction() * FULL_DASH_ARRAY
-        ).toFixed(0)} 283`;
+    function setRemainingPathColor(timeLeft) {
+      const { alert, warning, info } = COLOR_CODES;
+      if (timeLeft <= 0.1) {
         document
           .getElementById("base-timer-path-remaining")
-          .setAttribute("stroke-dasharray", circleDasharray);
+          .classList.remove(alert.color);
+        document
+          .getElementById("base-timer-path-remaining")
+          .classList.add(info.color);
       }
-    </script>
-    <script>
-      const img = document.getElementById("myImgg");
-      const text = document.getElementById("text");
-      let currentImgIdx = 0;
-      const images = [ 
-          'assets/letters/letter A.jpg',
-          'assets/letters/letter C.jpg',
-          'assets/letters/letter o.jpg',
-          'assets/letters/letter P.jpg',
-          'assets/letters/letter W.jpg',
-      ];
-      const letters = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-      ];
-
-      // Call changeImage() function on button click
-      function changeImagenext() {
-        if (currentImgIdx >= images.length - 1) {
-          currentImgIdx = 1;
-          // If current idx exceeds images array
-          // length, reset it to 0 again
-        }
-        currentImgIdx += 1;
-        if (currentImgIdx >= images.length - 1) {
-          currentImgIdx =0;
-          // If current idx exceeds images array
-          // length, reset it to 0 again
-        }
-        img.src = images[currentImgIdx];
-        text.innerHTML = letters[currentImgIdx];
-
-        // Increment current image idx by 1
+      else if (timeLeft <= alert.threshold) {
+        document
+          .getElementById("base-timer-path-remaining")
+          .classList.remove(warning.color);
+        document
+          .getElementById("base-timer-path-remaining")
+          .classList.add(alert.color);
+      } else if (timeLeft <= warning.threshold) {
+        document
+          .getElementById("base-timer-path-remaining")
+          .classList.remove(info.color);
+        document
+          .getElementById("base-timer-path-remaining")
+          .classList.add(warning.color);
       }
-      function changeImageprev() {
-        if (currentImgIdx <= 0) {
-          currentImgIdx = images.length;
-          // If current idx exceeds images array
-          // length, reset it to 0 again
-        }
-        currentImgIdx--;
-        img.src = images[currentImgIdx];
-        text.innerHTML = letters[currentImgIdx];
+    }
 
-        // Increment current image idx by 1
+    function calculateTimeFraction() {
+      const rawTimeFraction = timeLeft / TIME_LIMIT;
+      return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+    }
+
+    function setCircleDasharray() {
+      const circleDasharray = `${(
+        calculateTimeFraction() * FULL_DASH_ARRAY
+      ).toFixed(0)} 283`;
+      document
+        .getElementById("base-timer-path-remaining")
+        .setAttribute("stroke-dasharray", circleDasharray);
+    }
+  </script>
+  <script>
+    const img = document.getElementById("myImgg");
+    const text = document.getElementById("text");
+    let currentImgIdx = 0;
+    const images = [
+      'assets/letters/letter A.jpg',
+      'assets/letters/letter C.jpg',
+      'assets/letters/letter o.jpg',
+      'assets/letters/letter P.jpg',
+      'assets/letters/letter W.jpg',
+    ];
+    const letters = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+    ];
+
+    // Call changeImage() function on button click
+    function changeImagenext() {
+      if (currentImgIdx >= images.length - 1) {
+        currentImgIdx = 1;
+        // If current idx exceeds images array
+        // length, reset it to 0 again
       }
-    </script>
+      currentImgIdx += 1;
+      if (currentImgIdx >= images.length - 1) {
+        currentImgIdx = 0;
+        // If current idx exceeds images array
+        // length, reset it to 0 again
+      }
+      img.src = images[currentImgIdx];
+      text.innerHTML = letters[currentImgIdx];
 
-  </body>
+      // Increment current image idx by 1
+    }
+    function changeImageprev() {
+      if (currentImgIdx <= 0) {
+        currentImgIdx = images.length;
+        // If current idx exceeds images array
+        // length, reset it to 0 again
+      }
+      currentImgIdx--;
+      img.src = images[currentImgIdx];
+      text.innerHTML = letters[currentImgIdx];
+
+      // Increment current image idx by 1
+    }
+  </script>
+
+</body>
+
 </html>

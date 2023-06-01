@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Limbajul Semnelor</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <header>
-      <a href="index.html"><img class="logo" src="assets/logo site.png" style="width:100px;height:100px;" /></a>
-      
-      <ul>
-        <li>
-          <a href="index.html" style="color: white;background-color: black;" class="active"  >Home</a>
-        </li>
-        <li>
-          <a href="preda.html" style="color: white;">Support</a>
-        </li>
-        <li>
-          <a href="invata.html" style="color: white;">Learn</a>
-        </li>
-        <li>
-          <a href="contact.html" style="color: white;">Practice</a>
-        </li>
-      </ul>
-    </header>
-    <section>
-      <img src="assets/books.png" id="books" />
-      <h2 id="text">
-        InstaSign,<br/> an interactive tutorial
-      </h2>
-      <a href="#sec" id="btn"><b>Explore!</b></a>
-    </section>
-    <div class="sec" id="sec">
-      <h3 style="text-align:left;"> 
-        Can't seem to get the signs right?
-        <br/>
-        Are you struggling to communicate with sign language users?
-      </h3>
-      <br/>
-      <h3 style="text-align:left;">
-        Well, you're in the right place!
-      </h3>
-      <p>
-        <br /><br />
-        This website allows you to:<br />
-        <br/>
-        ✔️ Learn sign language faster and easier than ever
-        <br/>
-        ✔️ Clear learning path for beginners and advanced learners
-        <br/>
-        ✔️ Easy and intuitive to use 
-        <br/>
-        <br/>
-        <a href="invata.html">Click HERE to start your learing journey today!</a>
-        
-        <!-- <br>If you want to teach others a programming language, <a href="preda.html">click here!</a><br> -->
-      </p>
-    </div>
-    <script>
-      let books = document.getElementById("books");
-      let text = document.getElementById("text");
-      let btn = document.getElementById("btn");
 
-      window,
-        addEventListener("scroll", function () {
-          let value = window.scrollY;
-          books.style.right = value * -1.5 + "px";
-          text.style.marginLeft = value * -3 + "px";
-          btn.style.marginLeft = value * -3 + "px";
-        });
-    </script>
-  </body>
+<head>
+  <title>Limbajul Semnelor</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <header>
+    <a href="index.html"><img class="logo" src="assets/logo site.png" style="width:100px;height:100px;" /></a>
+
+    <ul>
+      <li>
+        <a href="index.html" style="color: white;background-color: black;" class="active">Home</a>
+      </li>
+      <li>
+        <a href="preda.html" style="color: white;">Support</a>
+      </li>
+      <li>
+        <a href="contact.html" style="color: white;">Practice</a>
+      </li>
+    </ul>
+  </header>
+  <section>
+    <img src="assets/books.png" id="books" />
+    <h2 id="text">
+      InstaSign,<br /> an interactive tutorial
+    </h2>
+    <a href="#sec" id="btn"><b>Explore!</b></a>
+  </section>
+  <div class="sec" id="sec">
+    <h3 style="text-align:left;">
+      Can't seem to get the signs right?
+      <br />
+      Are you struggling to communicate with sign language users?
+    </h3>
+    <br />
+    <h3 style="text-align:left;">
+      Well, you're in the right place!
+    </h3>
+    <p>
+      <br /><br />
+      This website allows you to:<br />
+      <br />
+      ✔️ Learn sign language faster and easier than ever
+      <br />
+      ✔️ Clear learning path for beginners and advanced learners
+      <br />
+      ✔️ Easy and intuitive to use
+      <br />
+      <br />
+      <a href="contact.html">Click HERE to start your learing journey today!</a>
+
+      <!-- <br>If you want to teach others a programming language, <a href="preda.html">click here!</a><br> -->
+    </p>
+  </div>
+  <script>
+    let books = document.getElementById("books");
+    let text = document.getElementById("text");
+    let btn = document.getElementById("btn");
+
+    window,
+      addEventListener("scroll", function () {
+        let value = window.scrollY;
+        books.style.right = value * -1.5 + "px";
+        text.style.marginLeft = value * -3 + "px";
+        btn.style.marginLeft = value * -3 + "px";
+      });
+  </script>
+</body>
+
 </html>
